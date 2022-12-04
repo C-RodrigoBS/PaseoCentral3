@@ -4,16 +4,19 @@ import React from 'react';
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Carousel } from 'bootstrap';
 import Navbar from '../components/Navbar/Navbar';
+import * as Server from './Server'
+
 export function Mostrar() {
+  const initialState = { id: 0, dni: 0, nombre: "", apellidos: "", correo: "", celular: 0, direccion: "", distrito: "", genero: "" };
+  const [usuarioss, setUsuarios] = useState(initialState);
   const [series, setSeries] = useState([]);
   const [pos, setPos] = useState(null);
   const [id, setId] = useState(0);
   const [nombre, setNombre] = useState('');
   const [fecha, setFecha] = useState('');
   useEffect(() => {
-    axios.get('http://localhost:8000/reconocimiento')
+    axios.get('http://127.0.0.1:8000/usuarios')
       .then(res => {
         console.log(res.data);
         setSeries(res.data);
@@ -21,7 +24,7 @@ export function Mostrar() {
   })
 
   function mostrar(cod, Mostrar) {
-    axios.get('http://localhost:8000/reconocimiento/' + cod)
+    axios.get('http://127.0.0.1:8000/usuarios' + cod)
       .then(res => {
         setPos(Mostrar);
         setId(res.data.id);
@@ -29,6 +32,24 @@ export function Mostrar() {
         setFecha(res.data.release_date);
       })
   }
+
+  const handleInputChange = (e) => {
+    //console.log(e.target.name);
+    //console.log(e.target.value);
+    setUsuarios({ ...usuarioss, [e.target.name]: e.target.value });
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let res;
+      res = await Server.registerUsuario(usuarioss);
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <Navbar />
@@ -46,48 +67,52 @@ export function Mostrar() {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                       <div class="mb-3">
-                        <label for="dni" class="form-label">DNI</label>
-                        <input type="text" class="form-control" id="dni" aria-describedby="dniHepl" />
+                        <input type="hidden" name='id' value={usuarioss.id} onChange={handleInputChange} class="form-control" id="id" />
 
                       </div>
                       <div class="mb-3">
-                        <label for="dni" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="dni" aria-describedby="dniHepl" />
+                        <label class="form-label">DNI</label>
+                        <input type="number" name='dni' value={usuarioss.dni} onChange={handleInputChange} class="form-control" id="dni" />
 
                       </div>
                       <div class="mb-3">
-                        <label for="dni" class="form-label">Apellidos</label>
-                        <input type="text" class="form-control" id="dni" aria-describedby="dniHepl" />
+                        <label class="form-label">Nombre</label>
+                        <input type="text" name='nombre' value={usuarioss.nombre} onChange={handleInputChange} class="form-control" id="nombre" />
 
                       </div>
                       <div class="mb-3">
-                        <label for="dni" class="form-label">Correo electronico</label>
-                        <input type="text" class="form-control" id="dni" aria-describedby="dniHepl" />
+                        <label class="form-label">Apellidos</label>
+                        <input type="text" name='apellidos' value={usuarioss.apellidos} onChange={handleInputChange} class="form-control" id="apellidos" />
 
                       </div>
                       <div class="mb-3">
-                        <label for="dni" class="form-label">Celular</label>
-                        <input type="text" class="form-control" id="dni" aria-describedby="dniHepl" />
+                        <label class="form-label">Correo electronico</label>
+                        <input type="text" name='correo' value={usuarioss.correo} onChange={handleInputChange} class="form-control" id="correo" />
 
                       </div>
                       <div class="mb-3">
-                        <label for="dni" class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="dni" aria-describedby="dniHepl" />
+                        <label class="form-label">Celular</label>
+                        <input type="number" name='celular' value={usuarioss.celular} onChange={handleInputChange} class="form-control" id="celular" />
 
                       </div>
                       <div class="mb-3">
-                        <label for="dni" class="form-label">Distrito</label>
-                        <input type="text" class="form-control" id="dni" aria-describedby="dniHepl" />
+                        <label class="form-label">Dirección</label>
+                        <input type="text" name='direccion' value={usuarioss.direccion} onChange={handleInputChange} class="form-control" id="direccion" />
 
                       </div>
-                      <label for="dni" class="form-label">Genero</label>
-                      <select class="form-select" aria-label="Default select example">
-                        <option selected>Escoja su genero</option>
-                        <option value="1">Masculino</option>
-                        <option value="2">Femenino</option>
-                      </select>
+                      <div class="mb-3">
+                        <label class="form-label">Distrito</label>
+                        <input type="text" name='distrito' value={usuarioss.distrito} onChange={handleInputChange} class="form-control" id="distrito" />
+
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Genero</label>
+                        <input type="text" name='genero' value={usuarioss.genero} onChange={handleInputChange} class="form-control" id="genero" />
+
+                      </div>
+
                       <br />
 
                       <button type="submit" class="btn btn-primary">Registrar</button>
@@ -99,43 +124,38 @@ export function Mostrar() {
             {/* Termina el formulario */}
           </div>
         </div>
-        <br/>
+        <br />
         <div className='row'>
           <div className='col'>
             {/* Empieza la tabla */}
-            <table className='table'>
-              <thead className='table-dark'>
+            <table className='table table-hover'>
+              <thead>
                 <tr>
-                  <th className='border border-solid border-2 border-green-600'>DNI</th>
-                  <th className='border border-solid border-2 border-green-600'>Nombre</th>
-                  <th className='border border-solid border-2 border-green-600'>Apellidos</th>
-                  <th className='border border-solid border-2 border-green-600'>Correo</th>
-                  <th className='border border-solid border-2 border-green-600'>Celular</th>
-                  <th className='border border-solid border-2 border-green-600'>Dirección</th>
-                  <th className='border border-solid border-2 border-green-600'>Distrito</th>
-                  <th className='border border-solid border-2 border-green-600'>Genero</th>
-
-
+                  <th>DNI</th>
+                  <th>Nombre</th>
+                  <th>Apellidos</th>
+                  <th>Ver</th>
+                  <th>Editar</th>
+                  <th>Eliminar</th>
                 </tr>
               </thead>
               <tbody>
                 {series.map((serie, Mostrar) => {
                   return (
                     <tr key={serie.id}>
-                      <td className='border border-solid border-2 border-green-600'>{serie.codigoReconocimiento}</td>
-                      <td className='border border-solid border-2 border-green-600'>{serie.fotoReconocimiento}</td>
-                      <td className='border border-solid border-2 border-green-600'>{serie.Hora}</td>
+                      <td>{serie.dni}</td>
+                      <td>{serie.nombre}</td>
+                      <td>{serie.apellidos}</td>
+                      <td>  </td>
+                      <td>  </td>
+                      <td>  </td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
-
           </div>
-
         </div>
-
-
       </div>
     </div>
   );
