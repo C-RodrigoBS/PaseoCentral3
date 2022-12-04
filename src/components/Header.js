@@ -6,6 +6,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Link as Scroll } from 'react-scroll';
 import Navbar from '../components/Navbar/Navbar';
 import Carousel from './Carousel/Carousel';
+import { Menu } from './Menu/Menu';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -73,22 +74,9 @@ export function Header() {
                 {...(checked ? { timeout: 1000 } : {})}
                 collapsedHeight={50}>
                 <div className={classes.container}>
-                    <Carousel/>
-                    <div>
-                        <button
-                            className="bg-slate-200 hover:bg-slate-300 rounded py-2 px-4 text-black" style={{backgroundColor:'#e07924'}}>
-                            <Link to="/mostrar" style={{ textDecoration: 'none', color: '#fff' }} onClick="location.reload()">
-                                Ver Registro
-                            </Link>
-                        </button>
-                    </div>
-
-                    <Scroll to='place-to-visit' smooth={true}>
-                        <IconButton>
-                            <ExpandMoreIcon className={classes.goDown}></ExpandMoreIcon>
-                        </IconButton>
-                    </Scroll>
+                    <Carousel/>   
                 </div>
+                <Menu />
             </Collapse>
         </div>
     );

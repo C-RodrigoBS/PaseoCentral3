@@ -1,0 +1,97 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+   
+    
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-gap: 10px;
+    grid-auto-flow: dense;
+    
+    margin: 1em auto;
+   
+    max-width: 800px;
+    align-items: center;
+  }
+  .info_but1 {
+    border-width: 1px;
+    border-style: solid;
+    padding-top: 10px;
+    border: 0px solid rgb(217, 137, 130);
+    
+    border-radius: 29px;
+  }
+  .info_but2 {
+    border-width: 1px;
+    border-style: solid;
+    padding-top: 10px;
+    border: 0px solid rgb(187, 143, 206);
+    
+    border-radius: 29px;
+  }
+  .info_but3 {
+    border-width: 1px;
+    border-style: solid;
+    padding-top: 10px;
+    border: 0px solid rgb(127, 179, 213 );
+    
+    border-radius: 29px;
+  }
+  .info_but4 {
+    border-width: 1px;
+    border-style: solid;
+    padding-top: 10px;
+    border: 0px solid rgb(118, 215, 196 );
+    
+    border-radius: 29px;
+  }
+  .info_but5 {
+    border-width: 1px;
+    border-style: solid;
+    padding-top: 10px;
+    border: 0px solid rgb(26, 188, 156);
+    
+    border-radius: 29px;
+  }
+  .letra{
+    font-size: 18px;
+    padding-top: 5px;
+    font-family: 'Fragment Mono', monospace;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Permanent Marker', cursive;
+    
+  }
+  .butbor1 {
+    
+    border: 3px solid rgb(217, 137, 130);
+    border-radius: 100%;
+    padding: 33px;
+    font-size: 20px;
+  }
+  .butbor2 {
+    
+    border: 3px solid rgb(223, 26, 8);
+    border-radius: 100%;
+    padding: 33px;
+    font-size: 20px;
+  }
+  .butbor3 {
+    
+    border: 3px solid rgb(217, 137, 130);
+    border-radius: 100%;
+    padding: 33px;
+    font-size: 20px;
+  }
+  .butbor4 {
+    
+    border: 3px solid rgb(217, 137, 130);
+    border-radius: 100%;
+    padding: 33px;
+    font-size: 20px;
+  }
+  .butbor5 {
+    
+    border: 3px solid rgb(217, 137, 130);
+    border-radius: 100%;
+    padding: 33px;
+    font-size: 20px;
+  }
