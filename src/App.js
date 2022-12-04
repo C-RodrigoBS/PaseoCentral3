@@ -4,18 +4,29 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Mostrar } from "./pages/Mostrar";
 import { Perfil } from "./pages/Perfil";
+
 import { Home } from "./pages/Home";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+
 import { AuthProvider } from "./context/AuthContext";
 
 
 function App() {
   return (
     <div>
+    
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
           
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute> 
+            }
+          />
           <Route
             path="/"
             element={

@@ -1,17 +1,17 @@
 .cardi {
     width: 255px;
-    padding: 20px;
+    
 }
 
 .imgsres {
     border-radius: 50px;
-    align-items: center;
+    
 }
 
-.polaroid {
+/* .polaroid {
     width: 100%;
 
-}
+} */
 
 /* .contenedor {
     background-image: url("https://album.es/fotos/uploads/imagenes/thumbs/guirnarldas-de-navidad-fondo-para-albumes-hofmann-classic_navidades-6-classic_1200px.jpg");
@@ -24,11 +24,11 @@
 } */
 
 
-.center {
+/* .center {
     margin: 105px;
     width: 1500;
 
-}
+} */
 
 
 

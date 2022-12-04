@@ -11,6 +11,9 @@ import { Pagination } from "swiper";
 export const Cine = () => {
   return (
     <div className='container'>
+        <h1>Cartelera de la semana</h1>
+
+
       <Swiper
        slidesPerView={3}
         spaceBetween={30}
