@@ -4,7 +4,7 @@ import "./Carousel.css";
 
 const Carousel = ({ images }) => {
     return (
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style={{ display: 'block', width: 1500, padding: 70 }}>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>

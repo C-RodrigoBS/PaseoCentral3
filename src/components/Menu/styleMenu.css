@@ -1,17 +1,4 @@
-.wrapper {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-   
-    
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    grid-gap: 10px;
-    grid-auto-flow: dense;
-    
-    margin: 1em auto;
-   
-    max-width: 800px;
-    align-items: center;
-  }
+
   .info_but1 {
     border-width: 1px;
     border-style: solid;
