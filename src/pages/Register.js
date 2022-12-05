@@ -53,7 +53,6 @@ export function Register() {
   return (
     <div className={classes.root}>
       {error && <Alert message={error} />}
-
       <section className="vh-100">
         <div className="container py-5 h-100">
           <div className="row d-flex align-items-center justify-content-center h-100">
@@ -61,13 +60,11 @@ export function Register() {
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
                 class="img-fluid" alt="Phone image"></img>
             </div> */}
-
             <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
               <div className={classes.carta}>
                 <img src="/assets/Logo.png" width="200" height="100" alt="" />
                 <hr></hr>
                 <form onSubmit={handleSubmit}>
-
                   <div className="form-outline mb-4">
                     <label
                       htmlFor="email"
@@ -99,7 +96,6 @@ export function Register() {
                       style={{ background: "transparent", color: "#fff" }}
                     />
                   </div>
-
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Registro
                   </button>
@@ -111,17 +107,10 @@ export function Register() {
                   </Link>
                 </p>
               </div>
-
-
             </div>
-
           </div>
         </div>
-
       </section>
-
-
-
     </div>
   );
 }

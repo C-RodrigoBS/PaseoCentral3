@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import React from 'react';
+import { faEye, faTrash, faUserPen } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAuth } from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from '../components/Navbar/Navbar';
 import * as Server from './Server'
 
 export function Mostrar() {
-  const initialState = { id: 0, dni: 0, nombre: "", apellidos: "", correo: "", celular: 0, direccion: "", distrito: "", genero: "" };
-  const [usuarioss, setUsuarios] = useState(initialState);
+  const initialState={id:0,dni:0,nombre:"",apellidos:"",correo:"",celular:0,direccion:"",distrito:"",genero:""};
+  const [usuarioss,setUsuarios]=useState(initialState);
   const [series, setSeries] = useState([]);
   const [pos, setPos] = useState(null);
   const [id, setId] = useState(0);
   const [nombre, setNombre] = useState('');
   const [fecha, setFecha] = useState('');
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/usuarios')
+    axios.get('https://paseo-medieval.onrender.com/usuarios')
       .then(res => {
         console.log(res.data);
         setSeries(res.data);
@@ -24,7 +26,7 @@ export function Mostrar() {
   })
 
   function mostrar(cod, Mostrar) {
-    axios.get('http://127.0.0.1:8000/usuarios' + cod)
+    axios.get('https://paseo-medieval.onrender.com/usuarios' + cod)
       .then(res => {
         setPos(Mostrar);
         setId(res.data.id);
@@ -33,23 +35,41 @@ export function Mostrar() {
       })
   }
 
-  const handleInputChange = (e) => {
+  const handleInputChange=(e)=>{
     //console.log(e.target.name);
     //console.log(e.target.value);
-    setUsuarios({ ...usuarioss, [e.target.name]: e.target.value });
+    setUsuarios({...usuarioss,[e.target.name]:e.target.value}); 
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+    try{
       let res;
       res = await Server.registerUsuario(usuarioss);
       const data = await res.json();
-      console.log(data);
-    } catch (error) {
+      setUsuarios(initialState);
+    }catch(error){
       console.log(error);
     }
   };
+
+  const handleDelete= async (userId) => {
+    await Server.deleteUsuario(userId); 
+  }
+  const handleMostrar= async (userId) => {
+    await Server.mostrarUsuario(userId); 
+
+  }
+
+  const listUsuarios = async () => {
+    try {
+      const res = await Server.listUsuarios();
+      const data = await res.json();
+      setSeries(data.serie);
+    }catch(error){
+      console.log(error);
+    }
+  }
   return (
     <div>
       <Navbar />
@@ -124,31 +144,56 @@ export function Mostrar() {
             {/* Termina el formulario */}
           </div>
         </div>
-        <br />
+        <br/>
+        {/*-------------- */}
+        <div class="modal fade" id="modal-ver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Información de Usuarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div>
+              <tbody>
+                {series.map((serie) => {
+                  return (
+                    <tr key={serie.id} >
+                      <p className='border border-solid border-2 border-green-600'>{serie.dni}</p>
+                      <p className='border border-solid border-2 border-green-600'>{serie.nombre}</p>
+                      <p className='border border-solid border-2 border-green-600'>{serie.apellidos} </p>
+                    </tr>
+                  );
+                })}
+              </tbody>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>              </div>
+            </div>
+          </div>
+        </div>
         <div className='row'>
           <div className='col'>
             {/* Empieza la tabla */}
-            <table className='table table-hover'>
-              <thead>
+            <table className='table'>
+              <thead className='table-dark'>
                 <tr>
-                  <th>DNI</th>
-                  <th>Nombre</th>
-                  <th>Apellidos</th>
-                  <th>Ver</th>
-                  <th>Editar</th>
-                  <th>Eliminar</th>
+                  <th className='border border-solid border-2 border-green-600'>DNI</th>
+                  <th className='border border-solid border-2 border-green-600'>Nombre</th>
+                  <th className='border border-solid border-2 border-green-600'>Apellidos</th>
+                  <th className='border border-solid border-2 border-green-600'>Ver</th>
+                  <th className='border border-solid border-2 border-green-600'>Eliminar</th>
+
                 </tr>
               </thead>
               <tbody>
                 {series.map((serie, Mostrar) => {
                   return (
-                    <tr key={serie.id}>
-                      <td>{serie.dni}</td>
-                      <td>{serie.nombre}</td>
-                      <td>{serie.apellidos}</td>
-                      <td>  </td>
-                      <td>  </td>
-                      <td>  </td>
+                    <tr key={serie.id} >
+                      <td className='border border-solid border-2 border-green-600'>{serie.dni}</td>
+                      <td className='border border-solid border-2 border-green-600'>{serie.nombre}</td>
+                      <td className='border border-solid border-2 border-green-600'>{serie.apellidos}</td>
+                      <td><button onClick={()=>serie.id && handleMostrar(serie.id)} type="button" class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#modal-ver"><FontAwesomeIcon icon={faEye}/></button></td>
+                      <td><button onClick={()=>serie.id && handleDelete(serie.id)} type="button"  class="btn btn-danger"><FontAwesomeIcon icon={faTrash}/></button></td>
                     </tr>
                   );
                 })}

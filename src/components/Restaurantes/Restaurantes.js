@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+
 import "./stylesRestaurantes.css";
 
 
@@ -8,9 +8,7 @@ export const Restaurantes = () => {
     return (
 
         <div class="container" >
-            <h1>
-                Patio de comidas
-            </h1>
+            <h2 className='text-center letra-p'> Patio de comidas</h2>
             <div className='row'>
                 <div className='col col-sm-3'>
                     <div class=" cardi " >

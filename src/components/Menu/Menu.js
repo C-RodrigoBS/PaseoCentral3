@@ -1,51 +1,101 @@
 import React from "react";
-import './styleMenu.css'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShop, faLocation, faPercent, faStar, faAddressBook } from '@fortawesome/free-solid-svg-icons'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { faShop } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./styleMenu.css";
+import { Pagination } from "swiper";
 
 export const Menu = () => {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          <button className="info_but1">
-            <div className="butbor1">
-              <FontAwesomeIcon icon={faShop} style={{ fontSize: "36px", color: "#F5B7B1" }} />
+    <div className="contenier-m">
+      <div className="App">
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={30}
+          modules={[Pagination]}
+          className="mySwiper"
+          pagination={{
+            clickable: true,
+          }}
+          breakpoints={{
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 70,
+            },
+          }}
+        >
+          <div class="container">
+            <div class="row ">
+              <div class="col-3">
+                <SwiperSlide className="new-card">
+                  <a>
+                    <div className="new_card">
+                      <div className="bor-m">
+                        <FontAwesomeIcon
+                          className="icon"
+                          icon={faShop}
+                          style={{ fontSize: "30px" }}
+                        />
+                      </div>
+                      <h6>Demo 1</h6>
+                    </div>
+                  </a>
+                </SwiperSlide>
+              </div>
+              <div class="col-10">
+                <SwiperSlide className="new-card">
+                  <a>
+                    <div className="new_card">
+                      <div className="bor-m">
+                        <FontAwesomeIcon
+                          className="icon"
+                          icon={faShop}
+                          style={{ fontSize: "30px" }}
+                        />
+                      </div>
+                      <h6>Demo 1</h6>
+                    </div>
+                  </a>
+                </SwiperSlide>
+              </div>
+              <div class="col-12">
+                <SwiperSlide className="new-card">
+                  <a>
+                    <div className="new_card">
+                      <div className="bor-m">
+                        <FontAwesomeIcon
+                          className="icon"
+                          icon={faShop}
+                          style={{ fontSize: "30px" }}
+                        />
+                      </div>
+                      <h6>Demo 1</h6>
+                    </div>
+                  </a>
+                </SwiperSlide>
+              </div>
+              <div class="col">
+                <SwiperSlide className="new-card">
+                  <a>
+                    <div className="new_card">
+                      <div className="bor-m">
+                        <FontAwesomeIcon
+                          className="icon"
+                          icon={faShop}
+                          style={{ fontSize: "30px" }}
+                        />
+                      </div>
+                      <h6>Demo 1</h6>
+                    </div>
+                  </a>
+                </SwiperSlide>
+              </div>
             </div>
-            <p className="letra">Tiendas</p>
-          </button>
-          
-
-          <button className="info_but2">
-            <div className="butbor2">
-              <FontAwesomeIcon icon={faLocation} style={{ fontSize: "36px", color: "#F5B7B1" }} />
-            </div>
-            <p className="letra">Mapa Mall </p>
-          </button>
-          <button className="info_but3">
-            <div className="butbor3">
-              <FontAwesomeIcon icon={faPercent} style={{ fontSize: "36px", color: "#F5B7B1" }} />
-            </div>
-            <p className="letra">Ofertas</p>
-          </button>
-
-
-          <button className="info_but4">
-            <div className="butbor4">
-              <FontAwesomeIcon icon={faStar} style={{ fontSize: "36px", color: "#F5B7B1" }} />
-            </div>
-            <p className="letra">novedades</p>
-          </button>
-
-          <button className="info_but5">
-            <div className="butbor5">
-              <FontAwesomeIcon icon={faAddressBook} style={{ fontSize: "36px", color: "#F5B7B1" }} />
-            </div>
-            <p className="letra">Contacto</p>
-          </button>
-
-        </div>
+          </div>
+        </Swiper>
       </div>
     </div>
   );

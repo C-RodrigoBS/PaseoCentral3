@@ -1,0 +1,19 @@
+.letra-p {
+    font-family: 'Fragment Mono', monospace;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 40px;
+  }
+  
+  .art{
+      
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    float: left;
+    margin: 15px;
+    -webkit-transition: margin 0.2s ease-out;
+    -moz-transition: margin 0.2s ease-out;
+    -o-transition: margin 0.2s ease-out;
+  }
+  .art:hover {
+      margin-top: 4px;
+  }

@@ -4,6 +4,7 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Mostrar } from "./pages/Mostrar";
 import { Perfil } from "./pages/Perfil";
+import { Eventos } from "./pages/Eventos";
 
 import { Home } from "./pages/Home";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -48,6 +49,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Perfil />
+              </ProtectedRoute> 
+            }
+          />
+          <Route
+            path="/eventos"
+            element={
+              <ProtectedRoute>
+                <Eventos />
               </ProtectedRoute> 
             }
           />

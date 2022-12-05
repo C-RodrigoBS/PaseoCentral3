@@ -2,7 +2,7 @@
 
 import { async } from "@firebase/util";
 
-const API_URL='http://127.0.0.1:8000/usuarios';
+const API_URL='https://paseo-medieval.onrender.com/usuarios';
 
 export const listUsuarios = async ()=>{
     return await fetch(API_URL);
@@ -25,5 +25,17 @@ export const registerUsuario = async (newUsuario) => {
             "distrito":String(newUsuario.distrito).trim(),
             "genero":String(newUsuario.genero).trim(),
         })
+    })
+    
+}
+export const deleteUsuario = async (userId) => {
+    return await fetch(`${API_URL}/${userId}`,{
+        method:'DELETE',
+    })
+}
+
+export const mostrarUsuario = async (userId) => {
+    return await fetch(`${API_URL}/${userId}`,{
+        method:'GET',
     })
 }

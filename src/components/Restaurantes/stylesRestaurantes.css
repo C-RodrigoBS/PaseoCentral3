@@ -1,5 +1,5 @@
 .cardi {
-    width: 255px;
+    width: auto;
     
 }
 
@@ -44,4 +44,12 @@
 
 .imgRestaurantes:hover {
     margin-top: 4px;
+}
+@media (min-width: 990px) { 
+    .cardi{
+        width: 255px;
+    }
+    .imgRestaurantes{
+        width: auto;
+    }
 }
